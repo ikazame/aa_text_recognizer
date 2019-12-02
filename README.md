@@ -20,6 +20,22 @@ UbuntuでのMeCabインストール例：
 $ sudo apt install mecab libmecab-dev mecab-ipadic-utf8
 ```
 
+またMeCabの辞書にはunidicを利用します．  
+[unidic配布ページ](https://ja.osdn.net/projects/unidic/releases/)より，unidic-mecab-2.1.2_src.zipをダウンロードし，インストールしてください
+```bash
+$ unzip unidic-mecab-2.1.2_src.zip
+$ cd unidic-mecab-2.1.2_src/
+$ ./configure
+$ make
+$ sudo make install
+```
+
+unidicのインストール先は利用環境により異なります．必要であればnerpare.py 5行目の辞書指定部分を編集してください
+
+```python
+m = MeCab.Tagger('-d /usr/lib/mecab/dic/unidic --node-format %M\\t%f[0],%f[1],%f[2],%f[3],%f[4],%f[5],%f[6],%f[7],%f[8]\\n --unk-format %M\\t%f[0],%f[1],%f[2],%f[3],%f[4],%f[5]\\n')
+```
+
 ついで，pipを用いて依存パッケージのインストールを行います
 ```bash
 $ pip3 install -r requirements.txt
